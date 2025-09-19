@@ -22,6 +22,12 @@ Apps.games = {
   ],
   content() {
     return `
+      <style>
+        .game-btn {
+          font-size: 1rem;
+          padding: 1rem 1.5rem;
+        }
+      </style>
       <section>
         <h1>Game Buttons</h1>
         <div class="game-btns">
@@ -51,7 +57,7 @@ Apps.games = {
         return res.text();
       })
       .then(html => {
-        const fixedHtml = Apps.fetcher.injectBase(html, url);
+        const fixedHtml = this.injectBase(html, url);
         const blob = new Blob([fixedHtml], { type: "text/html" });
         const blobUrl = URL.createObjectURL(blob);
         win.location = blobUrl;
@@ -61,5 +67,11 @@ Apps.games = {
         win.document.write('<h1>Failed to fetch content.</h1><pre>' + e.message + '</pre>');
         win.document.close();
       });
+  },
+  injectBase(html, url) {
+    return html.replace(
+      /<head[^>]*>/i,
+      match => `${match}<base href="${url.replace(/\/?$/, '/')}">`
+    );
   }
 };
