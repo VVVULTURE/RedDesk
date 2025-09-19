@@ -18,7 +18,6 @@ Apps.games = {
     { name: 'Dadish 2', url: 'https://dadish2.vercel.app/' },
     { name: 'Stickman hook', url: 'https://stickman-hook-five.vercel.app' },
     { name: 'Bitlife', url: 'https://bitlife1.vercel.app' },
-    { name: 'Compact Conflict', url: 'https://wasyl.eu/games/compact-conflict/play.html' }
   ],
   content() {
     return `
